@@ -1,9 +1,14 @@
 from manim import *
 class ContitutionScene(Scene):
     def construct(self):
-        booleans=self.get_booleans()
-        texs=self.get_texs(booleans)
-        self.play(LaggedStartMap(Write,texs))
+        great_texts=VGroup()
+        for i in range(5):
+            booleans=self.get_booleans()
+            texs=self.get_texs(booleans)
+            great_texts.add(texs)
+        self.play(LaggedStartMap(Write,great_texts[0]))
+        for i in great_texts[1:]:
+            self.play(Transform(great_texts[0],i))
         self.wait()
     def get_texs(self,booleans):
         texs=VGroup() # VGroup is a group of texts
